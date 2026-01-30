@@ -124,6 +124,27 @@ public class SinglyLinkedList<E> implements List<E> {
     @Override
     public void add(int position, E e) {
         // TODO
+        if (position == 0){
+            addFirst(e);
+        }
+
+        if (position > size){
+            throw new IllegalArgumentException("Position does not exist");
+        }
+
+        Node<E> curr = head;
+        Node<E> prev = null;
+
+        int count =0;
+
+        while (curr != null && count < position){
+            prev = curr;
+            curr = curr.next;
+            count++;
+        }
+
+        prev.next = new Node<E>(e,curr);
+        size++;
     }
 
 
@@ -209,7 +230,8 @@ public class SinglyLinkedList<E> implements List<E> {
         ll.addFirst(5);
 
         System.out.println(ll);
-        System.out.println("GetTest " + ll.get(2));
+        ll.add(4,100);
+        System.out.println(ll);
 
 
 
