@@ -102,7 +102,23 @@ public class SinglyLinkedList<E> implements List<E> {
     @Override
     public E get(int position) {
         // TODO
-        return null;
+
+        if (head == null){
+            throw new IllegalArgumentException("LL is empty");
+        }
+        if (position > size){
+            throw new IllegalArgumentException("Position not in LL");
+        }
+
+        int count = 0;
+        Node<E> curr = head;
+
+        while (curr != null && count < position){
+            curr = curr.next;
+            count++;
+        }
+
+        return curr.next.getElement();
     }
 
     @Override
@@ -114,6 +130,9 @@ public class SinglyLinkedList<E> implements List<E> {
     @Override
     public void addFirst(E e) {
         // TODO
+
+        head = new Node<>(e, head);
+        size++;
     }
 
     @Override
@@ -176,22 +195,13 @@ public class SinglyLinkedList<E> implements List<E> {
     public static void main(String[] args) {
         SinglyLinkedList<Integer> ll = new SinglyLinkedList<Integer>();
         System.out.println("ll " + ll + " isEmpty: " + ll.isEmpty());
-        System.out.println(ll.size());
-        //LinkedList<Integer> ll = new LinkedList<Integer>();
 
+        //LinkedList<Integer> ll = new LinkedList<Integer>();
+        ll.addFirst(10);
         ll.addFirst(0);
-        ll.addFirst(1);
-        ll.addFirst(2);
-        ll.addFirst(3);
-        ll.addFirst(4);
-        ll.addLast(-1);
-        //ll.removeLast();
-        //ll.removeFirst();
-        //System.out.println("I accept your apology");
-        //ll.add(3, 2);
         System.out.println(ll);
-        ll.remove(5);
-        System.out.println(ll);
+
+
 
     }
 }
