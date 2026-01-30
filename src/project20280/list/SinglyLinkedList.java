@@ -118,7 +118,7 @@ public class SinglyLinkedList<E> implements List<E> {
             count++;
         }
 
-        return curr.next.getElement();
+        return curr.getElement();
     }
 
     @Override
@@ -144,6 +144,7 @@ public class SinglyLinkedList<E> implements List<E> {
         }
 
         curr.next = new Node<E>(e, null);
+        size++;
     }
 
     @Override
@@ -205,9 +206,12 @@ public class SinglyLinkedList<E> implements List<E> {
         //LinkedList<Integer> ll = new LinkedList<Integer>();
         ll.addFirst(10);
         ll.addFirst(0);
-        ll.addLast(15);
-        ll.addLast(20);
+        ll.addFirst(5);
+
         System.out.println(ll);
+        System.out.println("GetTest " + ll.get(2));
+
+
 
 
 
