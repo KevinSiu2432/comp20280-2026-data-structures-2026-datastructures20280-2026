@@ -138,6 +138,12 @@ public class SinglyLinkedList<E> implements List<E> {
     @Override
     public void addLast(E e) {
         // TODO
+        Node<E> curr = head;
+        while (curr.next != null){
+            curr = curr.next;
+        }
+
+        curr.next = new Node<E>(e, null);
     }
 
     @Override
@@ -199,6 +205,8 @@ public class SinglyLinkedList<E> implements List<E> {
         //LinkedList<Integer> ll = new LinkedList<Integer>();
         ll.addFirst(10);
         ll.addFirst(0);
+        ll.addLast(15);
+        ll.addLast(20);
         System.out.println(ll);
 
 
