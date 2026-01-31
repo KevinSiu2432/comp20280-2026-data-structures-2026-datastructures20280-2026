@@ -126,6 +126,7 @@ public class SinglyLinkedList<E> implements List<E> {
         // TODO
         if (position == 0){
             addFirst(e);
+            return;
         }
 
         if (position > size || position < 0){
@@ -178,6 +179,7 @@ public class SinglyLinkedList<E> implements List<E> {
         // TODO
         if (position == 0){
             removeFirst();
+            return;
         }
         if (position < 0 && position > size){
             throw new IllegalArgumentException("index does not exist");
@@ -286,10 +288,16 @@ public class SinglyLinkedList<E> implements List<E> {
 
         //LinkedList<Integer> ll = new LinkedList<Integer>();
         System.out.println(ll);
-        ll.addLast(1);
+        ll.addFirst(10);
+        System.out.println(ll);
+        ll.add(1,99);
 
         System.out.println(ll);
+        System.out.println("Size after add(0,99): " + ll.size());
+        System.out.println("List: " + ll.toString());
         //test cases all passed.
+
+
 
     }
 }
