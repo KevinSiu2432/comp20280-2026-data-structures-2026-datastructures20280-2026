@@ -289,6 +289,7 @@ public class SinglyLinkedList<E> implements List<E> {
         ll.addLast(1);
 
         System.out.println(ll);
+        //test cases all passed.
 
     }
 }
