@@ -128,7 +128,7 @@ public class SinglyLinkedList<E> implements List<E> {
             addFirst(e);
         }
 
-        if (position > size){
+        if (position > size || position < 0){
             throw new IllegalArgumentException("Position does not exist");
         }
 
