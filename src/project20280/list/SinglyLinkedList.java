@@ -171,7 +171,31 @@ public class SinglyLinkedList<E> implements List<E> {
     @Override
     public E remove(int position) {
         // TODO
-        return null;
+        if (position == 0){
+            removeFirst();
+        }
+        if (position < 0 && position > size){
+            throw new IllegalArgumentException("index does not exist");
+        }
+        if (head == null){
+            throw new IllegalArgumentException("Nothing in the list to remove");
+        }
+
+        Node<E> curr = head;
+        Node<E> prev = null;
+        int count =0;
+
+        while (curr != null && count < position){
+            prev = curr;
+            curr = curr.next;
+            count++;
+        }
+        E data = curr.getElement();
+        prev.next = curr.next;
+        curr.next = null;
+
+        size--;
+        return data;
     }
 
     @Override
@@ -196,7 +220,7 @@ public class SinglyLinkedList<E> implements List<E> {
             throw new IllegalArgumentException("Nothing in the list to remove");
         }
         Node<E> curr = head;
-        Node<E> prev = head;
+        Node<E> prev = null;
 
         while (curr.next != null){
             prev = curr;
@@ -255,7 +279,7 @@ public class SinglyLinkedList<E> implements List<E> {
         System.out.println(ll);
         ll.add(3,100);
         System.out.println(ll);
-        System.out.println(ll.removeLast());
+        System.out.println(ll.remove(2));
         System.out.println(ll);
 
 
