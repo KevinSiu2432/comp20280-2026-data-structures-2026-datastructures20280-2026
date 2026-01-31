@@ -159,6 +159,11 @@ public class SinglyLinkedList<E> implements List<E> {
     @Override
     public void addLast(E e) {
         // TODO
+        if (head == null){
+            addFirst(e);
+            return;
+        }
+
         Node<E> curr = head;
         while (curr.next != null){
             curr = curr.next;
@@ -219,6 +224,14 @@ public class SinglyLinkedList<E> implements List<E> {
         if (head == null){
             throw new IllegalArgumentException("Nothing in the list to remove");
         }
+
+        //only one node
+        if (head.next == null){
+            E data = head.getElement();
+            head = null;
+            size--;
+            return data;
+        }
         Node<E> curr = head;
         Node<E> prev = null;
 
@@ -272,21 +285,10 @@ public class SinglyLinkedList<E> implements List<E> {
         System.out.println("ll " + ll + " isEmpty: " + ll.isEmpty());
 
         //LinkedList<Integer> ll = new LinkedList<Integer>();
-        ll.addFirst(10);
-        ll.addFirst(0);
-        ll.addFirst(5);
+        System.out.println(ll);
+        ll.addLast(1);
 
         System.out.println(ll);
-        ll.add(3,100);
-        System.out.println(ll);
-        System.out.println(ll.remove(2));
-        System.out.println(ll);
-
-
-
-
-
-
 
     }
 }
