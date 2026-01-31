@@ -177,7 +177,16 @@ public class SinglyLinkedList<E> implements List<E> {
     @Override
     public E removeFirst() {
         // TODO
-        return null;
+
+        if (head == null){
+            throw new IllegalArgumentException("Nothing in the list");
+        }
+
+        E data = head.getElement();
+        head = head.next;
+
+        size--;
+        return data;
     }
 
     @Override
@@ -230,8 +239,12 @@ public class SinglyLinkedList<E> implements List<E> {
         ll.addFirst(5);
 
         System.out.println(ll);
-        ll.add(4,100);
+        ll.add(3,100);
         System.out.println(ll);
+        System.out.println(ll.removeFirst());
+        System.out.println(ll);
+
+
 
 
 
