@@ -207,8 +207,8 @@ public class SinglyLinkedList<E> implements List<E> {
     public E removeFirst() {
         // TODO
 
-        if (head == null){
-            throw new IllegalArgumentException("Nothing in the list to remove");
+        if (head == null) {
+            return null;
         }
 
         E data = head.getElement();
