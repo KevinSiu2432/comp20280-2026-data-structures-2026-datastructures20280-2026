@@ -179,7 +179,7 @@ public class SinglyLinkedList<E> implements List<E> {
         // TODO
         if (position == 0){
             removeFirst();
-            return;
+            return null;
         }
         if (position < 0 && position > size){
             throw new IllegalArgumentException("index does not exist");

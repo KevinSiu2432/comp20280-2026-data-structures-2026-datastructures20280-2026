@@ -9,7 +9,7 @@ public class DoublyLinkedList<E> implements List<E> {
     private static class Node<E> {
         private final E data;
         private Node<E> next;
-        private final Node<E> prev;
+        private Node<E> prev;
 
         public Node(E e, Node<E> p, Node<E> n) {
             data = e;
@@ -31,24 +31,35 @@ public class DoublyLinkedList<E> implements List<E> {
 
     }
 
-    private final Node<E> head;
-    private final Node<E> tail;
-    private final int size = 0;
+    private  Node<E> header;
+    private  Node<E> trailer;
+    private int size = 0;
 
     public DoublyLinkedList() {
-        head = new Node<E>(null, null, null);
-        tail = new Node<E>(null, head, null);
-        head.next = tail;
+        header = new Node<E>(null, null, null);
+        trailer = new Node<E>(null, header, null);
+        header.next = trailer;
     }
 
     private void addBetween(E e, Node<E> pred, Node<E> succ) {
         // TODO
+        // pred == one before, succ is one after.
+        Node<E> newNode = new Node<E>(e,pred,succ);
+        pred.next = newNode;
+        succ.prev = newNode;
     }
 
     @Override
     public int size() {
         // TODO
-        return 0;
+        Node<E> curr = header.next;
+        int count = 0;
+        while (curr != null){
+            curr = curr.next;
+            count++;
+        }
+
+        return count;
     }
 
     @Override
@@ -75,11 +86,11 @@ public class DoublyLinkedList<E> implements List<E> {
     }
 
     private class DoublyLinkedListIterator<E> implements Iterator<E> {
-        Node<E> curr = (Node<E>) head.next;
+        Node<E> curr = (Node<E>) header.next;
 
         @Override
         public boolean hasNext() {
-            return curr != tail;
+            return curr != trailer;
         }
 
         @Override
@@ -104,7 +115,7 @@ public class DoublyLinkedList<E> implements List<E> {
         if (isEmpty()) {
             return null;
         }
-        return head.next.getData();
+        return header.next.getData();
     }
 
     public E last() {
@@ -132,15 +143,22 @@ public class DoublyLinkedList<E> implements List<E> {
     @Override
     public void addFirst(E e) {
         // TODO
+        // in an empty DLL, header.next = trailer, but this is not true
+        // if the list is not empty, header.next would be the head of the current list
+        // which we should change and then repoint the header sentinel.
+
+        Node<E> newHead = new Node<E>(e,header, header.next);
+        header.next = newHead;
+        header.next.prev = newHead;
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
-        Node<E> curr = head.next;
-        while (curr != tail) {
+        Node<E> curr = header.next;
+        while (curr != trailer) {
             sb.append(curr.data);
             curr = curr.next;
-            if (curr != tail) {
+            if (curr != trailer) {
                 sb.append(", ");
             }
         }
@@ -150,20 +168,20 @@ public class DoublyLinkedList<E> implements List<E> {
 
     public static void main(String[] args) {
         DoublyLinkedList<Integer> ll = new DoublyLinkedList<Integer>();
-        ll.addFirst(0);
-        ll.addFirst(1);
-        ll.addFirst(2);
-        ll.addLast(-1);
+
+        System.out.println(ll);
+        ll.addFirst(11);
+        System.out.println(ll);
+        ll.addFirst(22);
+        System.out.println(ll);
+        ll.addFirst(33);
         System.out.println(ll);
 
-        ll.removeFirst();
-        System.out.println(ll);
 
-        ll.removeLast();
-        System.out.println(ll);
-
-        for (Integer e : ll) {
+        /*for (Integer e : ll) {
             System.out.println("value: " + e);
         }
+
+         */
     }
 }
