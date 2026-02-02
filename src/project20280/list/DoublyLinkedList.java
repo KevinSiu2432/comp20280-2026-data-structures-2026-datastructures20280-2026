@@ -72,7 +72,7 @@ public class DoublyLinkedList<E> implements List<E> {
     @Override
     public boolean isEmpty() {
         // TODO
-        return false;
+        return (header.next != null);
     }
 
     @Override
@@ -184,17 +184,10 @@ public class DoublyLinkedList<E> implements List<E> {
     public static void main(String[] args) {
         DoublyLinkedList<Integer> ll = new DoublyLinkedList<Integer>();
 
+        System.out.println(ll.isEmpty());
         System.out.println(ll);
         ll.addFirst(11);
-        System.out.println(ll);
-        ll.addFirst(22);
-        System.out.println(ll);
-        ll.addLast(33);
-        System.out.println(ll);
-        ll.addLast(100);
-        System.out.println(ll);
-        System.out.println(ll.size());
-
+        System.out.println(ll.isEmpty());
 
 
         /*for (Integer e : ll) {
