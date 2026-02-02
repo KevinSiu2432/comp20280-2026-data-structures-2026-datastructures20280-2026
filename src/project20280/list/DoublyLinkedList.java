@@ -74,13 +74,24 @@ public class DoublyLinkedList<E> implements List<E> {
     @Override
     public boolean isEmpty() {
         // TODO
-        return (header.next != null);
+        return (header.next == trailer);
     }
 
     @Override
     public E get(int i) {
         // TODO
-        return null;
+        E data;
+        Node<E> curr = header.next;
+
+        int count = 0;
+
+        while (curr != null && count < i){
+            curr = curr.next;
+            count++;
+        }
+
+        data = curr.getData();
+        return data;
     }
 
     @Override
@@ -189,6 +200,7 @@ public class DoublyLinkedList<E> implements List<E> {
         System.out.println(ll.isEmpty());
         System.out.println(ll);
         ll.addFirst(11);
+        System.out.println(ll);
         System.out.println(ll.isEmpty());
 
 
