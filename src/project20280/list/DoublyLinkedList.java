@@ -184,19 +184,44 @@ public class DoublyLinkedList<E> implements List<E> {
 
     public E last() {
         // TODO
-        return null;
+
+        return get(size-1);
     }
 
     @Override
     public E removeFirst() {
         // TODO
-        return null;
+        if (isEmpty()){
+            throw new IllegalArgumentException("cannot remove from empty list");
+        }
+        Node<E> curr = header.next;
+        E data = curr.getData();
+
+        header.next = curr.next;
+        curr.next.prev = header;
+        size--;
+        return data;
     }
 
     @Override
     public E removeLast() {
         // TODO
-        return null;
+        if (isEmpty()){
+            throw new IllegalArgumentException("cannot remove from an empty list");
+        }
+        if (size == 1){
+            return removeFirst();
+        }
+
+
+        Node<E> end = trailer.prev;
+        E data = end.getData();
+
+        trailer.prev = end.prev;
+        end.prev.next = trailer;
+
+        size--;
+        return data;
     }
 
     @Override
@@ -246,9 +271,9 @@ public class DoublyLinkedList<E> implements List<E> {
         ll.addFirst(11);
         ll.addFirst(20);
         ll.addFirst(400);
+
         System.out.println(ll);
-        System.out.println(ll.remove(2));
-        System.out.println(ll);
+        System.out.println(ll.last());
 
 
 
