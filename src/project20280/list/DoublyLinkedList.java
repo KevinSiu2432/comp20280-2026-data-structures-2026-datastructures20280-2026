@@ -52,13 +52,20 @@ public class DoublyLinkedList<E> implements List<E> {
     @Override
     public int size() {
         // TODO
-        Node<E> curr = header.next;
         int count = 0;
-        while (curr != null){
-            curr = curr.next;
-            count++;
+
+        // if head does not exist, size is 0;
+        if (header.next == null){
+            return 0;
         }
 
+        //start reading at head.
+        Node<E> curr = header.next;
+
+        while (curr != trailer){
+            count++;
+            curr = curr.next;
+        }
         return count;
     }
 
@@ -143,6 +150,7 @@ public class DoublyLinkedList<E> implements List<E> {
 
         trailer.prev = newTail;
         oldTail.next = newTail;
+        size++;
     }
 
     @Override
@@ -185,6 +193,7 @@ public class DoublyLinkedList<E> implements List<E> {
         System.out.println(ll);
         ll.addLast(100);
         System.out.println(ll);
+        System.out.println(ll.size());
 
 
 
