@@ -31,8 +31,8 @@ public class DoublyLinkedList<E> implements List<E> {
 
     }
 
-    private  Node<E> header;
-    private  Node<E> trailer;
+    private Node<E> header;
+    private Node<E> trailer;
     private int size = 0;
 
     public DoublyLinkedList() {
@@ -45,8 +45,10 @@ public class DoublyLinkedList<E> implements List<E> {
         // TODO
         // pred == one before, succ is one after.
         Node<E> newNode = new Node<E>(e,pred,succ);
+
         pred.next = newNode;
         succ.prev = newNode;
+        size++;
     }
 
     @Override
