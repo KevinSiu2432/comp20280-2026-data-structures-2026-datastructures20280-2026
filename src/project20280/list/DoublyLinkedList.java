@@ -123,7 +123,30 @@ public class DoublyLinkedList<E> implements List<E> {
     @Override
     public E remove(int i) {
         // TODO
-        return null;
+
+        if (i < 0 || i >= size){
+            throw new IllegalArgumentException("index does not exist");
+        }
+
+        Node<E> curr = header.next;
+        int count = 0;
+        E data;
+
+
+        while (curr != trailer && count < i){
+            curr = curr.next;
+            count++;
+        }
+
+        Node<E> temp = curr;
+
+        data = temp.getData();
+        temp.prev.next = temp.next;
+        temp.next.prev = temp.prev;
+
+
+        size--;
+        return data;
     }
 
     private class DoublyLinkedListIterator<E> implements Iterator<E> {
@@ -222,9 +245,11 @@ public class DoublyLinkedList<E> implements List<E> {
         System.out.println(ll);
         ll.addFirst(11);
         ll.addFirst(20);
+        ll.addFirst(400);
         System.out.println(ll);
-        ll.add(2,100);
+        System.out.println(ll.remove(2));
         System.out.println(ll);
+
 
 
 
