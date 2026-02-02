@@ -97,6 +97,27 @@ public class DoublyLinkedList<E> implements List<E> {
     @Override
     public void add(int i, E e) {
         // TODO
+
+        if (i < 0 || i > size){
+            throw new IllegalArgumentException("index does not exist");
+        }
+
+        if (i == 0){
+            addFirst(e);
+            return;
+        }
+        Node<E> curr = header.next;
+        int count = 0;
+
+        while (curr != trailer && count < i){
+            curr = curr.next;
+            count++;
+        }
+        //now we are on the index
+        Node<E> newNode = new Node<E> (e, curr.prev, curr);
+        curr.prev.next = newNode;
+        curr.prev = newNode;
+        size++;
     }
 
     @Override
@@ -197,11 +218,14 @@ public class DoublyLinkedList<E> implements List<E> {
     public static void main(String[] args) {
         DoublyLinkedList<Integer> ll = new DoublyLinkedList<Integer>();
 
-        System.out.println(ll.isEmpty());
+
         System.out.println(ll);
         ll.addFirst(11);
+        ll.addFirst(20);
         System.out.println(ll);
-        System.out.println(ll.isEmpty());
+        ll.add(2,100);
+        System.out.println(ll);
+
 
 
         /*for (Integer e : ll) {
