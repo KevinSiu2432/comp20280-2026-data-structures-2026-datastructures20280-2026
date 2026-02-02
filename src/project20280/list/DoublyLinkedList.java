@@ -138,6 +138,11 @@ public class DoublyLinkedList<E> implements List<E> {
     @Override
     public void addLast(E e) {
         // TODO
+        Node<E> oldTail = trailer.prev;
+        Node<E> newTail = new Node<E>(e,oldTail,trailer);
+
+        trailer.prev = newTail;
+        oldTail.next = newTail;
     }
 
     @Override
@@ -146,10 +151,12 @@ public class DoublyLinkedList<E> implements List<E> {
         // in an empty DLL, header.next = trailer, but this is not true
         // if the list is not empty, header.next would be the head of the current list
         // which we should change and then repoint the header sentinel.
+        Node<E> oldHead = header.next;
 
-        Node<E> newHead = new Node<E>(e,header, header.next);
+        Node<E> newHead = new Node<E>(e, oldHead, header.next);
         header.next = newHead;
-        header.next.prev = newHead;
+        oldHead.prev = newHead;
+        size++;
     }
 
     public String toString() {
@@ -174,8 +181,11 @@ public class DoublyLinkedList<E> implements List<E> {
         System.out.println(ll);
         ll.addFirst(22);
         System.out.println(ll);
-        ll.addFirst(33);
+        ll.addLast(33);
         System.out.println(ll);
+        ll.addLast(100);
+        System.out.println(ll);
+
 
 
         /*for (Integer e : ll) {
