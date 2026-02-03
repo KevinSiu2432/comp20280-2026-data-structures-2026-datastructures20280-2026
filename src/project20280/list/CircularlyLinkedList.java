@@ -59,7 +59,27 @@ public class CircularlyLinkedList<E> implements List<E> {
     @Override
     public void add(int i, E e) {
         // TODO
+        if (i == 0){
+            addFirst(e);
+            return;
+        }
+        if (i == size){
+            addLast(e);
+            return;
+        }
 
+        Node<E> curr = head;
+        Node<E> prev = null;
+        int count = 0;
+
+        while (count < i){
+            prev = curr;
+            curr = curr.next;
+            count++;
+        }
+
+        prev.next = new Node<E>(e, curr);
+        size++;
     }
 
     @Override
@@ -212,9 +232,10 @@ public class CircularlyLinkedList<E> implements List<E> {
 
         ll.addFirst(10);
         ll.addFirst(230);
+        ll.addLast(0);
 
         System.out.println(ll);
-        System.out.println(ll.removeLast());
+        ll.add(2, 300);
         System.out.println(ll);
     }
 }
