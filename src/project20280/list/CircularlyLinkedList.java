@@ -28,8 +28,10 @@ public class CircularlyLinkedList<E> implements List<E> {
         }
     }
 
-    private final Node<E> tail = null;
-    private final int size = 0;
+    private Node<E> tail = null;
+    private Node<E> head = null;
+    private int size = 0;
+
 
     public CircularlyLinkedList() {
 
@@ -46,6 +48,7 @@ public class CircularlyLinkedList<E> implements List<E> {
         return null;
     }
 
+
     /**
      * Inserts the given element at the specified index of the list, shifting all
      * subsequent elements in the list one position further to make room.
@@ -56,6 +59,7 @@ public class CircularlyLinkedList<E> implements List<E> {
     @Override
     public void add(int i, E e) {
         // TODO
+
     }
 
     @Override
@@ -115,6 +119,23 @@ public class CircularlyLinkedList<E> implements List<E> {
     @Override
     public void addLast(E e) {
         // TODO
+        // should use size == 0 check next time.
+        if (head == null){
+            Node<E> newNode = new Node<E>(e, null);
+
+            newNode.next = newNode;
+            head = newNode;
+            tail = newNode;
+            size++;
+            return;
+        }else {
+            Node<E> newNode = new Node<E> (e, head);
+
+            tail.next = newNode;
+            tail = newNode;
+            size++;
+            return;
+        }
     }
 
 
@@ -135,32 +156,10 @@ public class CircularlyLinkedList<E> implements List<E> {
 
     public static void main(String[] args) {
         CircularlyLinkedList<Integer> ll = new CircularlyLinkedList<Integer>();
-        for (int i = 10; i < 20; ++i) {
-            ll.addLast(i);
-        }
 
+        ll.addLast(10);
         System.out.println(ll);
-
-        ll.removeFirst();
+        ll.addLast(1000);
         System.out.println(ll);
-
-        ll.removeLast();
-        System.out.println(ll);
-
-        ll.rotate();
-        System.out.println(ll);
-
-        ll.removeFirst();
-        ll.rotate();
-        System.out.println(ll);
-
-        ll.removeLast();
-        ll.rotate();
-        System.out.println(ll);
-
-        for (Integer e : ll) {
-            System.out.println("value: " + e);
-        }
-
     }
 }
