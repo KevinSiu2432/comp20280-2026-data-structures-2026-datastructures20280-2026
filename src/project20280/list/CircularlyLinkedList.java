@@ -85,7 +85,29 @@ public class CircularlyLinkedList<E> implements List<E> {
     @Override
     public E remove(int i) {
         // TODO
-        return null;
+        if (i == 0){
+            return(removeFirst());
+        }
+        if (i == size -1){
+            return(removeLast());
+        }
+
+        Node<E> curr = head;
+        Node<E> prev = null;
+        int count = 0;
+
+        while (count < i){
+            prev = curr;
+            curr = curr.next;
+            count++;
+        }
+
+        E data = curr.getData();
+        prev.next = curr.next;
+        curr.next = null;
+
+
+        return data;
     }
 
     public void rotate() {
@@ -233,9 +255,10 @@ public class CircularlyLinkedList<E> implements List<E> {
         ll.addFirst(10);
         ll.addFirst(230);
         ll.addLast(0);
+        ll.addLast(40);
 
         System.out.println(ll);
-        ll.add(2, 300);
+        System.out.println(ll.remove(2));
         System.out.println(ll);
     }
 }
