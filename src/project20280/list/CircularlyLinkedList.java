@@ -102,13 +102,50 @@ public class CircularlyLinkedList<E> implements List<E> {
     @Override
     public E removeFirst() {
         // TODO
-        return null;
+        if (head == null){
+            throw new IllegalArgumentException("cannot remove from an empty list");
+        }
+
+        //there is only 1 node,
+        if (size == 1){
+
+            E data = head.getData();
+            head = null;
+            tail = null;
+            size--;
+
+            return data;
+        }
+
+        E data = head.getData();
+        head = head.next;
+        tail.next = head;
+        size--;
+
+        return data;
     }
 
     @Override
     public E removeLast() {
         // TODO
-        return null;
+        if (head == null){
+            throw new IllegalArgumentException("cannot remove from an empty list");
+        }
+        if (size == 1){
+            return(removeFirst());
+        }
+
+        Node<E> curr = head;
+        // curr will stop before tail
+        while (curr.next != tail) {
+            curr = curr.next;
+        }
+        E data = tail.getData();
+
+        curr.next = head;
+        tail = curr;
+        size--;
+        return data;
     }
 
     @Override
@@ -176,6 +213,8 @@ public class CircularlyLinkedList<E> implements List<E> {
         ll.addFirst(10);
         ll.addFirst(230);
 
+        System.out.println(ll);
+        System.out.println(ll.removeLast());
         System.out.println(ll);
     }
 }
