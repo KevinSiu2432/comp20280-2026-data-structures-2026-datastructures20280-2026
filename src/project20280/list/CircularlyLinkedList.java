@@ -45,7 +45,24 @@ public class CircularlyLinkedList<E> implements List<E> {
     @Override
     public E get(int i) {
         // TODO
-        return null;
+        if (head == null){
+            throw new IllegalArgumentException("cannot get from an empty list");
+        }
+
+        if (i < 0 || i >= size){
+            throw new IllegalArgumentException("index does not exist");
+        }
+
+        int count = 0;
+        Node<E> curr = head;
+
+        while (count < i){
+            curr = curr.next;
+            count++;
+        }
+
+
+        return curr.getData();
     }
 
 
@@ -112,6 +129,12 @@ public class CircularlyLinkedList<E> implements List<E> {
 
     public void rotate() {
         // TODO
+        if (size > 1){
+            throw new IllegalArgumentException("Cannot cycle 1 element");
+        }
+        tail = tail.next;
+        head = head.next;
+        return;
     }
 
     private class CircularlyLinkedListIterator<E> implements Iterator<E> {
