@@ -122,6 +122,7 @@ public class CircularlyLinkedList<E> implements List<E> {
         E data = curr.getData();
         prev.next = curr.next;
         curr.next = null;
+        size--;
 
 
         return data;
