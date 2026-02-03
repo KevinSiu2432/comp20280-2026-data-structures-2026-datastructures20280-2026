@@ -130,11 +130,13 @@ public class CircularlyLinkedList<E> implements List<E> {
 
     public void rotate() {
         // TODO
-        if (size > 1){
-            throw new IllegalArgumentException("Cannot cycle 1 element");
+        if (size <= 1){
+            return;
         }
+
         tail = tail.next;
         head = head.next;
+
         return;
     }
 
