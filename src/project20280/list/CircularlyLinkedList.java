@@ -114,6 +114,22 @@ public class CircularlyLinkedList<E> implements List<E> {
     @Override
     public void addFirst(E e) {
         // TODO
+        //same as addLast logic.
+        if (head == null){
+            Node<E> newNode = new Node<E>(e, null);
+            newNode.next = newNode;
+
+            head = newNode;
+            tail = newNode;
+            size++;
+            return;
+        }else{
+            Node<E> newNode = new Node<E>(e, head);
+            head = newNode;
+            tail.next = head;
+            size++;
+            return;
+        }
     }
 
     @Override
@@ -157,9 +173,9 @@ public class CircularlyLinkedList<E> implements List<E> {
     public static void main(String[] args) {
         CircularlyLinkedList<Integer> ll = new CircularlyLinkedList<Integer>();
 
-        ll.addLast(10);
-        System.out.println(ll);
-        ll.addLast(1000);
+        ll.addFirst(10);
+        ll.addFirst(230);
+
         System.out.println(ll);
     }
 }
