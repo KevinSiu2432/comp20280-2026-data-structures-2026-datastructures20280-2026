@@ -169,7 +169,7 @@ public class CircularlyLinkedList<E> implements List<E> {
     public E removeFirst() {
         // TODO
         if (head == null){
-            throw new IllegalArgumentException("cannot remove from an empty list");
+            return null;
         }
 
         //there is only 1 node,
