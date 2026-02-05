@@ -336,6 +336,17 @@ public class SinglyLinkedList<E extends Comparable<E>> implements List<E>  {
         return this.head;
     }
 
+    public SinglyLinkedList<E> copy(){
+        SinglyLinkedList<E> twin = new SinglyLinkedList<E>();
+
+        Node<E> temp = head;
+        while (temp != null){
+            twin.addLast(temp.getElement());
+            temp = temp.next;
+        }
+        return twin;
+    }
+
 
     //@Override
     public Iterator<E> iterator() {
@@ -388,14 +399,19 @@ public class SinglyLinkedList<E extends Comparable<E>> implements List<E>  {
         l2.addLast(19);
         l2.addLast(25);
 
-        System.out.println(l1);
-        System.out.println(l2);
+        System.out.println("list 1 " + l1);
+        System.out.println("list 2 " + l2);
         l1.head = l1.sortMerged(l2.head);
 
-        System.out.println(l1);
+        System.out.println("Merge Sorted List " + l1);
 
         l1.head = l1.reverse(l1.head);
-        System.out.println(l1);
+        System.out.println("Reverse sorted list " +l1);
+
+
+
+        SinglyLinkedList<Integer> sheep = l1.copy();
+        System.out.println("cloned " + sheep);
 
 
 
