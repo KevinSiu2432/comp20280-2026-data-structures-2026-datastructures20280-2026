@@ -85,6 +85,10 @@ public class CircularlyLinkedList<E> implements List<E> {
             return;
         }
 
+        if (i > size){
+            throw new IllegalArgumentException("Index does not exist");
+        }
+
         Node<E> curr = head;
         Node<E> prev = null;
         int count = 0;
@@ -278,13 +282,8 @@ public class CircularlyLinkedList<E> implements List<E> {
     public static void main(String[] args) {
         CircularlyLinkedList<Integer> ll = new CircularlyLinkedList<Integer>();
 
-        ll.addFirst(10);
-        ll.addFirst(230);
-        ll.addLast(0);
-        ll.addLast(40);
+        ll.add(20, 20);
+        System.out.println(ll);
 
-        System.out.println(ll);
-        System.out.println(ll.remove(2));
-        System.out.println(ll);
     }
 }

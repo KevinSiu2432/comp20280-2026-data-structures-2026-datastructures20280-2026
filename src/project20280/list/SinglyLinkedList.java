@@ -4,7 +4,7 @@ import project20280.interfaces.List;
 
 import java.util.Iterator;
 
-public class SinglyLinkedList<E> implements List<E> {
+public class SinglyLinkedList<E extends Comparable<E>> implements List<E>  {
 
     private static class Node<E> {
 
@@ -248,6 +248,71 @@ public class SinglyLinkedList<E> implements List<E> {
         return data;
     }
 
+    //sorted linked list function Q9
+    // this should return a reference to the head when I sort the two linked lists.
+    public Node<E> sortMerged(Node<E> l2Head){
+
+        //we have to use compare to, to compare generic dataTypes;
+        /*
+        if a > b = positive int
+        if a < b = negative int
+        if a == b => zero;
+         */
+
+        Node<E> p1 = this.head;
+        Node<E> p2 = l2Head;
+        // this.head = l1.head.
+        if (p1 == null){
+            return p2;
+        }
+
+        if (p2 == null){
+            return p1;
+        }
+
+
+        //dummy node that points at the start of the head.
+        Node<E> resultHeader = new Node<E>(null,null);
+        Node<E> tail = resultHeader;
+
+        //assign head of the new list, and a tail to append new nodes.
+        // p1 > p2 || p1 == p2
+        if ( ((p1.element).compareTo(p2.element)) >= 0){
+            resultHeader.next = p2;
+            tail = resultHeader.next;
+            p2 = p2.next;
+        }else{
+            resultHeader.next = p1;
+            tail = resultHeader.next;
+            p1 = p1.next;
+        }
+
+
+        while(p1 != null && p2 != null){
+            if (((p1.element).compareTo(p2.element)) >= 0){
+                tail.next = p2;
+                tail = tail.next;
+                p2 = p2.next;
+            }else{
+                tail.next = p1;
+                tail = tail.next;
+                p1 = p1.next;
+            }
+        }
+
+            //if the LL aren't the same size, we should just set tail to the
+            // "remainder" of the LL, which contains a link to the rest of the sorted element
+
+            if (p1 == null){
+                tail.next = p2;
+            }else{
+                tail.next = p1;
+            }
+
+        return resultHeader.next;
+    }
+
+
     //@Override
     public Iterator<E> iterator() {
         return new SinglyLinkedListIterator<E>();
@@ -283,19 +348,35 @@ public class SinglyLinkedList<E> implements List<E> {
     }
 
     public static void main(String[] args) {
-        SinglyLinkedList<Integer> ll = new SinglyLinkedList<Integer>();
-        System.out.println("ll " + ll + " isEmpty: " + ll.isEmpty());
+        SinglyLinkedList<Integer> l1 = new SinglyLinkedList<Integer>();
+        SinglyLinkedList<Integer> l2 = new SinglyLinkedList<Integer>();
+
+        l1.addLast(2);
+        l1.addLast(6);
+        l1.addLast(20);
+        l1.addLast(24);
+
+        l2.addLast(1);
+        l2.addLast(3);
+        l2.addLast(5);
+        l2.addLast(8);
+        l2.addLast(12);
+        l2.addLast(19);
+        l2.addLast(25);
+
+        System.out.println(l1);
+        System.out.println(l2);
+        l1.head = l1.sortMerged(l2.head);
+
+        System.out.println(l1);
+        System.out.println(l1.size());
+
+
+
+
 
         //LinkedList<Integer> ll = new LinkedList<Integer>();
-        System.out.println(ll);
-        ll.addFirst(10);
-        System.out.println(ll);
-        ll.add(1,99);
 
-        System.out.println(ll);
-        System.out.println("Size after add(0,99): " + ll.size());
-        System.out.println("List: " + ll.toString());
-        //test cases all passed.
 
 
 
