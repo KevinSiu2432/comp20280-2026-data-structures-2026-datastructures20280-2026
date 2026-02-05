@@ -312,6 +312,30 @@ public class SinglyLinkedList<E extends Comparable<E>> implements List<E>  {
         return resultHeader.next;
     }
 
+    public Node<E> reverse(Node<E> head){
+        // 3 pointer approach because of SLL
+        //also need small case
+
+        if (size < 0){
+            throw new IllegalArgumentException("cannot reverse empty list");
+        }
+
+        if (size == 1){
+            return head;
+        }
+        Node<E> prev = null;
+        Node<E> curr = head;
+
+        while (curr != null){
+            Node<E> succ = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = succ;
+        }
+        this.head = prev;
+        return this.head;
+    }
+
 
     //@Override
     public Iterator<E> iterator() {
@@ -369,7 +393,9 @@ public class SinglyLinkedList<E extends Comparable<E>> implements List<E>  {
         l1.head = l1.sortMerged(l2.head);
 
         System.out.println(l1);
-        System.out.println(l1.size());
+
+        l1.head = l1.reverse(l1.head);
+        System.out.println(l1);
 
 
 
