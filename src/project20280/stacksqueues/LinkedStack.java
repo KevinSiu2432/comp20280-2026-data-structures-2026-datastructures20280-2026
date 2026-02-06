@@ -30,7 +30,7 @@ public class LinkedStack<E> implements Stack<E> {
     @Override
     public void push(E e) {
         // TODO
-        ll.addLast(e);
+        ll.addFirst(e);
     }
 
     @Override
@@ -42,8 +42,13 @@ public class LinkedStack<E> implements Stack<E> {
     @Override
     public E pop() {
         // TODO
-        return ll.removeLast();
+        return ll.removeFirst();
     }
+    /*
+    push adds to the front, while remove adds from the end, even if it's a stack so that the
+
+     */
+
 
     public String toString() {
         return ll.toString();

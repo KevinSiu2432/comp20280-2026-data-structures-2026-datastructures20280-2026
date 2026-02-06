@@ -12,6 +12,7 @@ public class LinkedQueue<E> implements Queue<E> {
 
     public LinkedQueue() {
         // TODO
+        ll = new DoublyLinkedList<>();
     }
 
     @Override
