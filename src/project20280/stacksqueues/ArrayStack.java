@@ -1,6 +1,4 @@
 package project20280.stacksqueues;
-
-import project20280.interfaces.SortedMap;
 import project20280.interfaces.Stack;
 
 public class ArrayStack<E> implements Stack<E> {
@@ -121,11 +119,7 @@ public class ArrayStack<E> implements Stack<E> {
     public static void main(String[] args) {
         Stack<Integer> S = new ArrayStack<>();  // contents: ()
 
-        S.push(100);
-        S.push(120);
-        System.out.println(S);
 
-        System.out.println(S.pop());
-        System.out.println(S);
     }
+
 }

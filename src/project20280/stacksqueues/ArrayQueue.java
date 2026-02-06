@@ -55,7 +55,7 @@ public class ArrayQueue<E> implements Queue<E> {
     public E dequeue() {
         // TODO
         if (size == 0){
-            throw new IllegalArgumentException("no elements to dequeu");
+            throw new IllegalArgumentException("no elements to dequeue");
         }
 
         E d = data[front];

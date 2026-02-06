@@ -34,7 +34,7 @@ public class LinkedQueue<E> implements Queue<E> {
     @Override
     public E first() {
         // TODO
-        return ll.last();
+        return ll.first();
     }
 
     @Override

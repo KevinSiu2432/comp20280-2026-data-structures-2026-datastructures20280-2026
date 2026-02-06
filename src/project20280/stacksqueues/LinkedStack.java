@@ -36,7 +36,7 @@ public class LinkedStack<E> implements Stack<E> {
     @Override
     public E top() {
         // TODO
-        return ll.get(size() -1);
+        return ll.get(0);
     }
 
     @Override
