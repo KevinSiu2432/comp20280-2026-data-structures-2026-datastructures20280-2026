@@ -11,7 +11,7 @@ public class ArrayQueue<E> implements Queue<E> {
 
     public ArrayQueue(int capacity) {
         // TODO
-
+        data = (E[]) new Object[capacity];
     }
 
     public ArrayQueue() {
