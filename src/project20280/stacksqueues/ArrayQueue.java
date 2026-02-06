@@ -6,8 +6,10 @@ public class ArrayQueue<E> implements Queue<E> {
 
     private static final int CAPACITY = 1000;
     private E[] data;
-    private final int front = 0;
-    private final int size = 0;
+    private int front = 0;
+    private int size = 0;
+    private int rear = 0;
+
 
     public ArrayQueue(int capacity) {
         // TODO
@@ -32,6 +34,16 @@ public class ArrayQueue<E> implements Queue<E> {
     @Override
     public void enqueue(E e) {
         // TODO
+        //enqueuing is adding element from the rear
+        if (size == data.length){
+            throw new IllegalArgumentException("queue is too large");
+        }
+
+        data[rear] = e;
+        int n = data.length;
+        rear = (rear + 1) % n;
+
+        size++;
     }
 
     @Override
@@ -66,8 +78,10 @@ public class ArrayQueue<E> implements Queue<E> {
         }
         System.out.println(qq);
 
-        for (int i = 0; i < N / 2; ++i) qq.dequeue();
+        /*for (int i = 0; i < N / 2; ++i) qq.dequeue();
         System.out.println(qq);
+
+         */
 
     }
 }
