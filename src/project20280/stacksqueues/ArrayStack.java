@@ -1,5 +1,6 @@
 package project20280.stacksqueues;
 
+import project20280.interfaces.SortedMap;
 import project20280.interfaces.Stack;
 
 public class ArrayStack<E> implements Stack<E> {
@@ -89,7 +90,11 @@ public class ArrayStack<E> implements Stack<E> {
     @Override
     public E pop() {
         // TODO
-        return null;
+
+        E d = data[top];
+        top--;
+
+        return d;
     }
 
     /**
@@ -119,6 +124,8 @@ public class ArrayStack<E> implements Stack<E> {
         S.push(100);
         S.push(120);
         System.out.println(S);
-        System.out.println(S.top());
+
+        System.out.println(S.pop());
+        System.out.println(S);
     }
 }
