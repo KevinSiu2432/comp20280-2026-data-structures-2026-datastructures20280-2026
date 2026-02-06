@@ -78,7 +78,7 @@ public class ArrayStack<E> implements Stack<E> {
     @Override
     public E top() {
         // TODO
-        return null;
+        return data[top];
     }
 
     /**
@@ -117,6 +117,8 @@ public class ArrayStack<E> implements Stack<E> {
         Stack<Integer> S = new ArrayStack<>();  // contents: ()
 
         S.push(100);
+        S.push(120);
         System.out.println(S);
+        System.out.println(S.top());
     }
 }
