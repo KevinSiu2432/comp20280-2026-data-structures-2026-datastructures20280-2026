@@ -54,7 +54,16 @@ public class ArrayQueue<E> implements Queue<E> {
     @Override
     public E dequeue() {
         // TODO
-        return null;
+        if (size == 0){
+            throw new IllegalArgumentException("no elements to dequeu");
+        }
+
+        E d = data[front];
+        int n = data.length;
+        front = (front + 1) % n;
+        size--;
+
+        return d;
     }
 
     public String toString() {
@@ -78,10 +87,10 @@ public class ArrayQueue<E> implements Queue<E> {
         }
         System.out.println(qq);
 
-        /*for (int i = 0; i < N / 2; ++i) qq.dequeue();
+        for (int i = 0; i < N / 2; ++i) qq.dequeue();
         System.out.println(qq);
 
-         */
+
 
     }
 }
