@@ -9,6 +9,10 @@ class BracketChecker {
 
     public void check() {
         // TODO
+        //open brackets put onto the stack,
+        //ignore anything that isn't a bracket
+        //when seeing open bracket, pop the stack and compare elements.
+
     }
 
     public static void main(String[] args) {
