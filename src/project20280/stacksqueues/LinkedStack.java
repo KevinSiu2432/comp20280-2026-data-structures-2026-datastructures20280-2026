@@ -8,14 +8,14 @@ public class LinkedStack<E> implements Stack<E> {
 
     DoublyLinkedList<E> ll;
 
-    public static void main(String[] args) {
-
-    }
-
     public LinkedStack() {
         // TODO
         ll = new DoublyLinkedList<>();
     }
+    public static void main(String[] args) {
+
+    }
+
 
     @Override
     public int size() {
@@ -36,6 +36,7 @@ public class LinkedStack<E> implements Stack<E> {
     @Override
     public E top() {
         // TODO
+
         return null;
     }
 
