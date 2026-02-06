@@ -36,14 +36,13 @@ public class LinkedStack<E> implements Stack<E> {
     @Override
     public E top() {
         // TODO
-
-        return null;
+        return ll.get(size() -1);
     }
 
     @Override
     public E pop() {
         // TODO
-        return null;
+        return ll.removeLast();
     }
 
     public String toString() {
