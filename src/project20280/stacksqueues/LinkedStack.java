@@ -2,16 +2,19 @@ package project20280.stacksqueues;
 
 import project20280.interfaces.Stack;
 import project20280.list.DoublyLinkedList;
+import project20280.tree.LinkedBinaryTree;
 
 public class LinkedStack<E> implements Stack<E> {
 
     DoublyLinkedList<E> ll;
 
     public static void main(String[] args) {
+
     }
 
     public LinkedStack() {
         // TODO
+        ll = new DoublyLinkedList<>();
     }
 
     @Override
