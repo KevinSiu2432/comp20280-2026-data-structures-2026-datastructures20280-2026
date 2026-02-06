@@ -2,7 +2,6 @@ package project20280.stacksqueues;
 
 import project20280.interfaces.Stack;
 import project20280.list.DoublyLinkedList;
-import project20280.tree.LinkedBinaryTree;
 
 public class LinkedStack<E> implements Stack<E> {
 
@@ -14,6 +13,9 @@ public class LinkedStack<E> implements Stack<E> {
     }
     public static void main(String[] args) {
 
+        long n = 23;
+        String s = convertToBinary(n);
+        System.out.println(s);
     }
 
 
@@ -46,8 +48,18 @@ public class LinkedStack<E> implements Stack<E> {
     }
     /*
     push adds to the front, while remove adds from the end, even if it's a stack so that the
-
      */
+
+    static String convertToBinary (long dec_num){
+        Stack<Long> stack = new LinkedStack<>();
+
+        while (dec_num > 0){
+            stack.push(dec_num % 2);
+            dec_num = dec_num / 2;
+        }
+
+        return stack.toString();
+    }
 
 
     public String toString() {
