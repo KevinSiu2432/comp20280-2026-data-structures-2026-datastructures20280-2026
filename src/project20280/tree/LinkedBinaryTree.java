@@ -154,7 +154,17 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      */
     public Position<E> addRoot(E e) throws IllegalStateException {
         // TODO
-        return null;
+        if (size != 0){
+        throw new IllegalStateException("Tree is not empty");
+        }
+
+        //Node = element, parent, left, right;
+
+        Node<E> newNode = new Node<>(e,null,null,null);
+        root = newNode;
+        size++;
+
+        return root;
     }
 
     public void insert(E e) {
