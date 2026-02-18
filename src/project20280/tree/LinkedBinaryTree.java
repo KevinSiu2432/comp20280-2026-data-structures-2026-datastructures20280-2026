@@ -314,7 +314,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
             child.setParent(pos.getParent());
         }
 
-        if (child == root){
+        if (pos == root){
             root = child;
         }else{
             Node<E> parent = pos.getParent();

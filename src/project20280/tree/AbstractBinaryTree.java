@@ -4,6 +4,7 @@ import project20280.interfaces.BinaryTree;
 import project20280.interfaces.Position;
 
 import java.util.ArrayList;
+import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 
 /**
@@ -22,11 +23,29 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E>
      * @return the Position of the sibling (or null if no sibling exists)
      * @throws IllegalArgumentException if p is not a valid Position for this tree
      */
+
     @Override
     public Position<E> sibling(Position<E> p) {
-        // TODO
-        return null;
+        //Define the parent node of the child node given
+        Position<E> parent = parent(p);
+
+        //if the parent has no children, return null
+        if (parent == null) {
+            return null;
+        }
+
+        //if the child is the left node of the parent, return the right node of the parent, (i.e, the sibling)
+        if (p == left(parent)) {
+            return right(parent);
+        }
+
+        //else, the child is the right node of the parent, and hence, return the left node of the parent, (i.e the sibling)
+        else {
+            return left(parent);
+        }
     }
+
+
 
     /**
      * Returns the number of children of Position p.
