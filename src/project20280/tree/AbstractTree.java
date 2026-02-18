@@ -67,6 +67,7 @@ public abstract class AbstractTree<E> implements Tree<E> {
     @Override
     public int numChildren(Position<E> p) {
         // TODO
+
         return 0;
     }
 
@@ -102,7 +103,11 @@ public abstract class AbstractTree<E> implements Tree<E> {
      */
     public int depth(Position<E> p) throws IllegalArgumentException {
         // TODO
-        return 0;
+        if (isRoot(p)){
+            return 0;
+        }else{
+            return 1 + depth(parent(p));
+        }
     }
 
     /**
