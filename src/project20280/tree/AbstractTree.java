@@ -68,7 +68,8 @@ public abstract class AbstractTree<E> implements Tree<E> {
     public int numChildren(Position<E> p) {
         // TODO
         int count = 0;
-        for (Position<E> child = children(p)){
+        for (Position<E> child:children(p))
+        {
             count++;
         }
 
@@ -132,9 +133,10 @@ public abstract class AbstractTree<E> implements Tree<E> {
         int h = 0;
 
         for (Position<E> c : children(p)){
-            h = Math.max(h,1 + height(c));
-            return h;
+            h = Math.max(h,1 + height_recursive(c));
+
         }
+        return h;
     }
 
     /**

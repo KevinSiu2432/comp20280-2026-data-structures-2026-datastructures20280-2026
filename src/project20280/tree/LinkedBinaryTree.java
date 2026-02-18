@@ -58,7 +58,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         LinkedBinaryTree<String> bt = new LinkedBinaryTree<>();
         String[] arr = { "A", "B", "C", "D", "E", null, "F", null, null, "G", "H", null, null, null, null };
         bt.createLevelOrder(arr);
-        System.out.println(bt.toBinaryTreeString());
+        System.out.println(bt.toString());
     }
 
 
@@ -258,6 +258,31 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      */
     public void attach(Position<E> p, LinkedBinaryTree<E> t1, LinkedBinaryTree<E> t2) throws IllegalArgumentException {
         // TODO
+        Node<E> pos = validate(p);
+
+        //if position's node has any children, Internal node = node with children.
+        if (isInternal(p)){
+            throw new IllegalArgumentException("p must be a leaf");
+        }
+
+        size = size + t1.size() + t2.size();
+
+        if (!t1.isEmpty()){
+            t1.root.setParent(pos);
+
+            pos.setLeft(t1.root);
+            t1.root = null;
+            t1.size = 0;
+        }
+
+        if (!t2.isEmpty()){
+            t2.root.setParent(pos);
+
+            pos.setRight(t2.root);
+            t2.root = null;
+            t2.size = 0 ;
+        }
+
     }
 
     /**
@@ -279,12 +304,11 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
     public void createLevelOrder(ArrayList<E> l) {
         // TODO
-        root = createLevelOrderHelper(l, root, 0);
+        root = createLevelOrderHelper(l, null, 0);
     }
 
-    private Node<E> createLevelOrderHelper(java.util.ArrayList<E> l, Node<E> p, int i) {
+    private Node<E> createLevelOrderHelper(ArrayList<E> l, Node<E> p, int i) {
         // TODO
-        return null;
     }
 
     public void createLevelOrder(E[] arr) {
@@ -293,7 +317,6 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
     private Node<E> createLevelOrderHelper(E[] arr, Node<E> p, int i) {
         // TODO
-        return null;
     }
 
     public String toBinaryTreeString() {
