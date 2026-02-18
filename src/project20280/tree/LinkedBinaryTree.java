@@ -167,9 +167,9 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return root;
     }
 
+    /*
     public void insert(E e) {
         // TODO
-
     }
 
     // recursively add Nodes to binary tree in proper position
@@ -177,6 +177,8 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         // TODO
         return null;
     }
+
+     */
 
     /**
      * Creates a new left child of Position p storing element e and returns its
@@ -295,7 +297,39 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      */
     public E remove(Position<E> p) throws IllegalArgumentException {
         // TODO
-        return null;
+        Node<E> pos = validate(p);
+
+        if (numChildren(p) == 2){
+            throw new IllegalArgumentException("P cannot have two children");
+        }
+        Node<E> child;
+        if (pos.getLeft() != null){
+            child = pos.getLeft();
+        }else{
+            child = pos.getRight();
+        }
+
+
+        if (child != null){
+            child.setParent(pos.getParent());
+        }
+
+        if (child == root){
+            root = child;
+        }else{
+            Node<E> parent = pos.getParent();
+
+            if (pos == parent.getLeft()){
+                parent.setLeft(child);
+            }else {
+                parent.setRight(child);
+            }
+        }
+        size--;
+
+        E data = pos.getElement();
+
+        return data;
     }
 
     public String toString() {
@@ -304,19 +338,43 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
     public void createLevelOrder(ArrayList<E> l) {
         // TODO
-        root = createLevelOrderHelper(l, null, 0);
+        root = createLevelOrderHelper(l, root, 0);
     }
 
     private Node<E> createLevelOrderHelper(ArrayList<E> l, Node<E> p, int i) {
-        // TODO
+        if (l.isEmpty()) {
+            System.out.print("The List is empty");
+            return null;
+        }
+        if (i < l.size()){
+            Node<E> n = createNode(l.get(i), p, null, null);
+            n.left = createLevelOrderHelper(l, n.left, (2*i)+1);
+            n.right = createLevelOrderHelper(l, n.right, (2*i)+2);
+            ++size;
+            return n;
+        }
+        return p;
     }
+
 
     public void createLevelOrder(E[] arr) {
         root = createLevelOrderHelper(arr, root, 0);
     }
 
     private Node<E> createLevelOrderHelper(E[] arr, Node<E> p, int i) {
-        // TODO
+        if (arr.length <= 0){
+            System.out.print("The Array is empty");
+            return null;
+        }
+
+        if (i < arr.length){
+            Node<E> n = createNode(arr[i], p, null, null);
+            n.left = createLevelOrderHelper(arr, n.left, (2*i)+1);
+            n.right = createLevelOrderHelper(arr, n.right, (2*i)+2);
+            ++size;
+            return n;
+        }
+        return p;
     }
 
     public String toBinaryTreeString() {
