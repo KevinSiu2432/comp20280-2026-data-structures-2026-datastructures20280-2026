@@ -3,6 +3,7 @@ package project20280.tree;
 import project20280.interfaces.Position;
 import project20280.interfaces.Tree;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -198,6 +199,11 @@ public abstract class AbstractTree<E> implements Tree<E> {
      */
     private void preorderSubtree(Position<E> p, List<Position<E>> snapshot) {
         // TODO
+        snapshot.add(p);
+
+        for (Position<E> c : children(p)){
+            preorderSubtree(c, snapshot);
+        }
     }
 
     /**
@@ -207,7 +213,12 @@ public abstract class AbstractTree<E> implements Tree<E> {
      */
     public Iterable<Position<E>> preorder() {
         // TODO
-        return null;
+        List<Position<E>> snapshot = new ArrayList<>();
+
+        if (!isEmpty()){
+            preorderSubtree(root(),snapshot);
+        }
+        return snapshot;
     }
 
     /**
@@ -219,6 +230,10 @@ public abstract class AbstractTree<E> implements Tree<E> {
      */
     private void postorderSubtree(Position<E> p, List<Position<E>> snapshot) {
         // TODO
+        for (Position<E> c : children(p)){
+            postorderSubtree(c,snapshot);
+            snapshot.add(p);
+        }
     }
 
     /**
