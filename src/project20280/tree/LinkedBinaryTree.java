@@ -54,16 +54,74 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
     // accessor methods (not already implemented in AbstractBinaryTree)
 
+
+    //Q3 Construct binary tree with in and pre
+    int preorderIndex = 0;
+    public void construct(E[] inorder, E[] preorder) {
+
+        if (inorder == null || preorder == null) {
+            root = null;
+            size = 0;
+            return;
+        }
+
+        size = inorder.length;
+        preorderIndex = 0;
+
+        root = buildTree(inorder, preorder, 0, inorder.length - 1);
+    }
+
+    public Node<E>buildTree(E[] inorder, E[] preorder, int index_start, int index_end){
+        if (index_start > index_end){
+            return null;
+        }
+
+        //first element in pre-order is the root of a tree/subtree
+        E rootvalue = preorder[preorderIndex];
+        preorderIndex++;
+
+        Node<E> newRoot = createNode(rootvalue,null,null,null);
+
+        int splitter = index_start;
+
+        //we look for the current root (first element of preorder)
+        // splice the inOrder @ root.
+        while(!inorder[splitter].equals(rootvalue)){
+            splitter++;
+        }
+
+        newRoot.left = buildTree(inorder,preorder,index_start,splitter - 1);
+        newRoot.right = buildTree(inorder,preorder,splitter + 1,index_end);
+
+        return newRoot;
+
+    }
     public static void main(String [] args) {
 
+        /*
+        // Q2 lab2
         LinkedBinaryTree<String> bt = new LinkedBinaryTree<>();
 
         String[] arr = { "A", "B", "C", "D", "E", null, "F", null, null, "G", "H", null, null, null, null };
         bt.createLevelOrder(arr);
         System.out.println(bt.toBinaryTreeString());
+        */
+        //Q3 lab3
+
+
+            Integer [] inorder= {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+                    18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
+            Integer [] preorder= {18, 2, 1, 14, 13, 12, 4, 3, 9, 6, 5, 8, 7, 10, 11, 15, 16,
+                    17, 28, 23, 19, 22, 20, 21, 24, 27, 26, 25, 29, 30};
+
+            LinkedBinaryTree <Integer > bt = new LinkedBinaryTree <>();
+            bt.construct(inorder,preorder);
+            System.out.println(bt.toBinaryTreeString());
+
 
 
         /*
+        //h lab 1.
         LinkedBinaryTree<Integer> bt = new LinkedBinaryTree<>();
         Integer [] arr = new Integer [] {1,
                 2,3,
@@ -77,7 +135,8 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         int height = bt.height_recursive(bt.root);
         System.out.println("The height is: "+ height);
         System.out.println("Number of calls: " + bt.getCallCount());
-        */
+
+         */
 
     }
 
@@ -397,6 +456,10 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         }
 
         if (i < arr.length){
+
+            if (arr[i] == null){
+                return null;
+            }
             Node<E> n = createNode(arr[i], p, null, null);
             n.left = createLevelOrderHelper(arr, n.left, (2*i)+1);
             n.right = createLevelOrderHelper(arr, n.right, (2*i)+2);
