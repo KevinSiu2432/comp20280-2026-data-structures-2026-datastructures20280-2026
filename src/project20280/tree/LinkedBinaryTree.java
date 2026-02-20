@@ -55,11 +55,33 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     // accessor methods (not already implemented in AbstractBinaryTree)
 
     public static void main(String [] args) {
+
         LinkedBinaryTree<String> bt = new LinkedBinaryTree<>();
+
         String[] arr = { "A", "B", "C", "D", "E", null, "F", null, null, "G", "H", null, null, null, null };
         bt.createLevelOrder(arr);
-        System.out.println(bt.toString());
+        System.out.println(bt.toBinaryTreeString());
+
+
+        /*
+        LinkedBinaryTree<Integer> bt = new LinkedBinaryTree<>();
+        Integer [] arr = new Integer [] {1,
+                2,3,
+                4,5,6,7,
+                8,9,10,11,12, 13, 14, 15,
+                16 ,17 ,18 ,19 ,20 ,21 ,22 ,23 ,24 ,25 ,26 ,27 ,28 ,29 ,30 ,31 ,
+                null ,null ,null ,35};
+        bt.createLevelOrder(arr);
+        System.out.println(bt.toBinaryTreeString());
+
+        int height = bt.height_recursive(bt.root);
+        System.out.println("The height is: "+ height);
+        System.out.println("Number of calls: " + bt.getCallCount());
+        */
+
     }
+
+
 
 
     /**
@@ -346,7 +368,14 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
             System.out.print("The List is empty");
             return null;
         }
+
+
         if (i < l.size()){
+
+            if (l.get(i) == null){
+                return null;
+            }
+
             Node<E> n = createNode(l.get(i), p, null, null);
             n.left = createLevelOrderHelper(l, n.left, (2*i)+1);
             n.right = createLevelOrderHelper(l, n.right, (2*i)+2);

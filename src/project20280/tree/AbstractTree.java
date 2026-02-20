@@ -129,11 +129,27 @@ public abstract class AbstractTree<E> implements Tree<E> {
         return h;
     }
 
+    private int callcount = 0;
+
+    public int getCallCount() {
+        return callcount;
+    }
+
+    public int height_recursive() {
+        callcount = 0;                 // reset for this run
+        return height_recursive(root()); // start recursion from the tree root
+    }
+
     public int height_recursive(Position<E> p) {
         // TODO
+        callcount++;
         int h = 0;
 
         for (Position<E> c : children(p)){
+            if (c.getElement() == null){
+                continue;
+            }
+
             h = Math.max(h,1 + height_recursive(c));
 
         }
