@@ -140,6 +140,10 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
      */
     protected void heapify() {
         // TODO
+        int startIndex = parent(heap.size() - 1); // Start at the last parent
+        for (int j = startIndex; j >= 0; j--) {   // Move up to the root
+            downheap(j);
+        }
     }
 
     // public methods
