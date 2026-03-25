@@ -179,7 +179,14 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
     @Override
     public Entry<K, V> insert(K key, V value) throws IllegalArgumentException {
         // TODO
-        return null;
+        checkKey(key);
+
+        Entry<K,V> newNode = new PQEntry<K,V>(key,value);
+
+        heap.add(newNode);
+        upheap(heap.size() - 1);
+
+        return newNode;
     }
 
     /**
