@@ -94,7 +94,7 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
     protected void upheap(int j) {
         // TODO
 
-        while (j < 0){
+        while (j > 0){
             int p = parent(j);
 
             //ensure that min/max heap follows the properties
@@ -111,7 +111,28 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
      * Moves the entry at index j lower, if necessary, to restore the heap property.
      */
     protected void downheap(int j) {
-        // TODO
+        while (hasLeft(j)) {
+
+            int leftIndex = left(j);
+            int smallChildIndex = leftIndex; // assume left is smaller for now
+
+            if (hasRight(j)) {
+                int rightIndex = right(j);
+                // if the right node is less than the left, then we set smaller child to the right index
+                if (compare(heap.get(leftIndex), heap.get(rightIndex)) > 0) {
+                    smallChildIndex = rightIndex;
+                }
+            }
+
+            // if the property is correct we just break
+            if (compare(heap.get(j), heap.get(smallChildIndex)) <= 0) {
+                break;
+            }
+
+            // otherwise, swap and continue the process at the new child index
+            swap(j, smallChildIndex);
+            j = smallChildIndex;
+        }
     }
 
     /**
