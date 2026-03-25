@@ -93,6 +93,18 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
      */
     protected void upheap(int j) {
         // TODO
+
+        while (j < 0){
+            int p = parent(j);
+
+            //ensure that min/max heap follows the properties
+            if (compare(heap.get(j), heap.get(p)) >= 0){
+                break;
+            }
+
+            swap(j,p);
+            j = p;
+        }
     }
 
     /**
