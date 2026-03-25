@@ -80,6 +80,11 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
      */
     protected void swap(int i, int j) {
         // TODO
+        //basic swapping logic
+        Entry<K,V> temp = heap.get(i); // temp
+        heap.set(i, heap.get(j)); // j = i
+        heap.set(j,temp); // i = temp (j)
+
     }
 
     /**
