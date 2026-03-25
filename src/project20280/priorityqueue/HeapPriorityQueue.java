@@ -42,8 +42,11 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
      * @param keys   an array of the initial keys for the priority queue
      * @param values an array of the initial values for the priority queue
      */
-    public HeapPriorityQueue(K[] keys, V[] values) {
-        // TODO
+    public HeapPriorityQueue(K[ ] keys, V[ ] values) {
+        super( );
+        for (int j=0; j < Math.min(keys.length, values.length); j++)
+            heap.add(new PQEntry<>(keys[j], values[j]));
+        heapify(); //in Max-Heap, finds max and swaps with current element of subtree
     }
 
     // protected utilities
