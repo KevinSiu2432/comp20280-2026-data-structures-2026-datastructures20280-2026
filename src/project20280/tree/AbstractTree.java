@@ -135,6 +135,7 @@ public abstract class AbstractTree<E> implements Tree<E> {
         return callcount;
     }
 
+    //wrapper class
     public int height_recursive() {
         callcount = 0;                 // reset for this run
         return height_recursive(root()); // start recursion from the tree root
@@ -143,15 +144,13 @@ public abstract class AbstractTree<E> implements Tree<E> {
     public int height_recursive(Position<E> p) {
         // TODO
         callcount++;
+        if (isExternal(p)){
+            return 1;
+        }
+
         int h = 0;
-
         for (Position<E> c : children(p)){
-            if (c.getElement() == null){
-                continue;
-            }
-
             h = Math.max(h,1 + height_recursive(c));
-
         }
         return h;
     }

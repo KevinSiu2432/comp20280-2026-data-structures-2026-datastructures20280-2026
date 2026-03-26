@@ -213,7 +213,21 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
     public String toString() {
         return heap.toString();
     }
+    public void pqSort(K[] arr) {
+        /*
+        Stage 1, we push all elements of arr, into an empty queue
+         */
+        for (K element : arr) {
+            this.insert(element, (V) element);
+        }
 
+        /*
+        Stage 2, we extract the minimum keys in, order
+         */
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = this.removeMin().getKey();
+        }
+    }
     /**
      * Used for debugging purposes only
      */
@@ -236,6 +250,8 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
         }
     }
 
+
+    /*
     public static void main(String[] args) {
         Integer[] rands = new Integer[]{35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5};
         HeapPriorityQueue<Integer, Integer> pq = new HeapPriorityQueue<>(rands, rands);
@@ -252,4 +268,20 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
         //   23,     21,      5, 12,
         // 24, 26, 35, 33, 15]
     }
+     */
+
+
+    public static void main(String[] args) {
+        Integer[] rands = new Integer[]{35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5};
+
+        HeapPriorityQueue<Integer, Integer> pq = new HeapPriorityQueue<>();
+
+        System.out.println("Original array: " + java.util.Arrays.toString(rands));
+
+        pq.pqSort(rands);
+
+        System.out.println("Sorted array:   " + java.util.Arrays.toString(rands));
+    }
+
+
 }

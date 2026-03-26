@@ -98,46 +98,37 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     }
     public static void main(String [] args) {
 
-        /*
-        // Q2 lab2
-        LinkedBinaryTree<String> bt = new LinkedBinaryTree<>();
+        System.out.println("Lab1: Q1:Height");
+        LinkedBinaryTree<Integer> height = new LinkedBinaryTree<>();
+        Integer [] arr = new Integer [] {1,
+                2,3,
+                4,5,6,7,
+                8,9,10,11,12, 13, 14, 15,
+                16 ,17 ,18 ,19 ,20 ,21 ,22 ,23 ,24 ,25 ,26 ,27 ,28 ,29 ,30 ,31 ,
+                35};
+        height.createLevelOrder(arr);
+        System.out.println(height.toBinaryTreeString());
 
-        String[] arr = { "A", "B", "C", "D", "E", null, "F", null, null, "G", "H", null, null, null, null };
-        bt.createLevelOrder(arr);
-        System.out.println(bt.toBinaryTreeString());
-        */
-        //Q3 lab3
+        int h = height.height_recursive(height.root);
+        System.out.println("The height is: "+ h);
+        System.out.println("Number of calls: " + height.getCallCount());
 
+
+        System.out.println("Lab2: Q2 + Q3: showCase");
+        LinkedBinaryTree<String> q2 = new LinkedBinaryTree<>();
+
+        String[] a = { "A", "B", "C", "D", "E", null, "F", null, null, "G", "H", null, null, null, null };
+        q2.createLevelOrder(a);
+        System.out.println("Level Order Presentation: \n" + q2.toBinaryTreeString());
 
             Integer [] inorder= {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
                     18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
             Integer [] preorder= {18, 2, 1, 14, 13, 12, 4, 3, 9, 6, 5, 8, 7, 10, 11, 15, 16,
                     17, 28, 23, 19, 22, 20, 21, 24, 27, 26, 25, 29, 30};
 
-            LinkedBinaryTree <Integer > bt = new LinkedBinaryTree <>();
-            bt.construct(inorder,preorder);
-            System.out.println(bt.toBinaryTreeString());
-
-
-
-        /*
-        //h lab 1.
-        LinkedBinaryTree<Integer> bt = new LinkedBinaryTree<>();
-        Integer [] arr = new Integer [] {1,
-                2,3,
-                4,5,6,7,
-                8,9,10,11,12, 13, 14, 15,
-                16 ,17 ,18 ,19 ,20 ,21 ,22 ,23 ,24 ,25 ,26 ,27 ,28 ,29 ,30 ,31 ,
-                null ,null ,null ,35};
-        bt.createLevelOrder(arr);
-        System.out.println(bt.toBinaryTreeString());
-
-        int height = bt.height_recursive(bt.root);
-        System.out.println("The height is: "+ height);
-        System.out.println("Number of calls: " + bt.getCallCount());
-
-         */
-
+            LinkedBinaryTree <Integer > q3 = new LinkedBinaryTree <>();
+            q3.construct(inorder,preorder);
+            System.out.println("In order + preorder BT creation: \n" + q3.toBinaryTreeString());
     }
 
 
