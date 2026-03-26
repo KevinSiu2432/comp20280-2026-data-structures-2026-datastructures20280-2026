@@ -250,8 +250,56 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
         }
     }
 
+    public static <K extends Comparable<K>> void heapSort(K[] arr) {
+        int n = arr.length;
 
-    /*
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            downheapMax(arr, n, i);
+        }
+
+        for (int i = n - 1; i > 0; i--) {
+            K temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+            downheapMax(arr, i, 0);
+        }
+    }
+
+    /**
+     * Helper for heapSort
+     * @param arr
+     * @param n
+     * @param i
+     * @param <K>
+     */
+    private static <K extends Comparable<K>> void downheapMax(K[] arr, int n, int i) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        // Compare with left child
+        if (left < n && arr[left].compareTo(arr[largest]) > 0) {
+            largest = left;
+        }
+
+        // Compare with right child
+        if (right < n && arr[right].compareTo(arr[largest]) > 0) {
+            largest = right;
+        }
+
+        // If a child was larger, swap and recurse
+        if (largest != i) {
+            K swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
+
+            downheapMax(arr, n, largest);
+        }
+    }
+
+
+    /* Ignore as unit-tests demonstarte this
     public static void main(String[] args) {
         Integer[] rands = new Integer[]{35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5};
         HeapPriorityQueue<Integer, Integer> pq = new HeapPriorityQueue<>(rands, rands);
@@ -281,6 +329,18 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
         pq.pqSort(rands);
 
         System.out.println("Sorted array:   " + java.util.Arrays.toString(rands));
+
+        Integer[] heapsort = new Integer[]{35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5};
+        HeapPriorityQueue<Integer, Integer> pq2 = new HeapPriorityQueue<>();
+
+
+        System.out.println("Original array: " + java.util.Arrays.toString(heapsort));
+        heapSort(heapsort);
+        System.out.println("Sorted array:   " + java.util.Arrays.toString(heapsort));
+
+
+
+
     }
 
 
