@@ -140,9 +140,10 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         /*
         LinkedBinaryTree<Integer> random4 = new LinkedBinaryTree<>().makeRandom(10);
         //System.out.println("Tree Size: " + random4.size());
-
         */
         System.out.println("\nRoot to leaf test:\n " +  q3.rootToLeafPaths());
+
+        System.out.println("Diameter: " + q3.diameter());
     }
 
     /**
@@ -171,6 +172,25 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         }
 
         path.remove(path.size() - 1);
+    }
+
+
+    public int diameter() {
+        return diameter(root());
+    }
+
+    private int diameter(Position<E> p) {
+        if (p == null) return 0;
+
+        // Use your existing height method (if it counts nodes, use it as is)
+        int lHeight = (left(p) != null) ? height_recursive(left(p)) : 0;
+        int rHeight = (right(p) != null) ? height_recursive(right(p)) : 0;
+
+        int leftDiameter = (left(p) != null) ? diameter(left(p)) : 0;
+        int rightDiameter = (right(p) != null) ? diameter(right(p)) : 0;
+
+
+        return Math.max(lHeight + rHeight + 1, Math.max(leftDiameter, rightDiameter));
     }
 
 
